@@ -1,7 +1,8 @@
 let tela = document.querySelector('#telaConteudo')
 let resultado = document.querySelector('#telaResultado')
-let calculo = ''
-let numeros = []
+let expressaoNaTela = ''
+let typedNum = []
+let pilha = []
 let acumuladorDeNum = ''
 
 let backspace = document.querySelector('#backspace')
@@ -13,7 +14,7 @@ let divide = document.querySelector('#divide')
 let sete = document.querySelector('#sete')
 let oito = document.querySelector('#oito')
 let nove = document.querySelector('#nove')
-let porcentagem = document.querySelector('#porcentagem')
+// let porcentagem = document.querySelector('#porcentagem')
 let = document.querySelector('#backspace')
 let quatro = document.querySelector('#quatro')
 let cinco = document.querySelector('#cinco')
@@ -29,26 +30,52 @@ let zero = document.querySelector('#zero')
 //let = document.querySelector('#')
 let igual = document.querySelector('#igual')
 
-function interpretaString() {
-  let resultadoFinal
-  for (let i = 0; i < numeros.length; i++) {
-    switch (numeros[i]) {
-      case '+':
-        conta = numeros.shift(numeros[i])
-        resultadoFinal = conta[i - 1] + conta[i + 1]
-
-        break
-      case '/':
-        break
-      case '*':
-        break
-      case '-':
-        break
-      default:
-        break
+function interpretaStringOperacao() {
+  // enquanto for pelo menos 3 vai ser 2 numeros e uma operaocao 3-3
+  while (typedNum.length > 3) {
+    for (let i = 0; i < typedNum.length; i++) {
+      if (typedNum[i] == '+') {
+        // tentando montar uma forma pra pegar o valor da index antes e depois do operador, ai preciso remover eles da array typedNum e colocar em uma nova?
+        pilha = parseInt(typedNum[i - 1]) + parseInt(typedNum[i + 1])
+        typedNum.splice(0, 3, parseInt(pilha))
+        console.log(typedNum)
+      } else if (typedNum[i] == '-') {
+        pilha = typedNum[i - 1] - typedNum[i + 1]
+        typedNum.splice(0, 3, parseInt(pilha))
+        console.log(typedNum)
+      } else if (typedNum[i] == '*') {
+        pilha = typedNum[i - 1] * typedNum[i + 1]
+        typedNum.splice(0, 3, parseInt(pilha))
+        console.log(typedNum)
+      } else if (typedNum[i] == '/') {
+        pilha = typedNum[i - 1] / typedNum[i + 1]
+        typedNum.splice(0, 3, parseInt(pilha))
+        console.log(typedNum)
+      }
     }
   }
-  return (resultado.textContent = resultadoFinal)
+  if (typedNum.length == 3) {
+    for (let i = 0; i < typedNum.length; i++) {
+      if (typedNum[i] == '+') {
+        pilha = parseInt(typedNum[i - 1]) + parseInt(typedNum[i + 1])
+        typedNum.splice(0, 3, parseInt(pilha))
+        console.log(typedNum)
+      } else if (typedNum[i] == '-') {
+        pilha = typedNum[i - 1] - typedNum[i + 1]
+        typedNum.splice(0, 3, parseInt(pilha))
+        console.log(typedNum)
+      } else if (typedNum[i] == '*') {
+        pilha = typedNum[i - 1] * typedNum[i + 1]
+        typedNum.splice(0, 3, parseInt(pilha))
+        console.log(typedNum)
+      } else if (typedNum[i] == '/') {
+        pilha = typedNum[i - 1] / typedNum[i + 1]
+        typedNum.splice(0, 3, parseInt(pilha))
+        console.log(typedNum)
+      }
+    }
+  }
+  return (resultado.textContent = pilha)
 }
 
 function acumuladorDeNumerosRepetidos(num) {
@@ -58,10 +85,10 @@ function acumuladorDeNumerosRepetidos(num) {
 }
 
 function acumuladorDeOperadores(operador) {
-  numeros.push(parseInt(acumuladorDeNum))
+  typedNum.push(parseInt(acumuladorDeNum))
   acumuladorDeNum = ''
   if (operador != '=') {
-    numeros.push(operador)
+    typedNum.push(operador)
     tela.textContent += operador
   }
 }
@@ -73,32 +100,41 @@ soma.addEventListener('click', function () {
 })
 
 porcentagem.addEventListener('click', function () {
-  tela.textContent = calculo += '%'
-  console.log('%')
+  acumuladorDeOperadores('')
+  console.log('')
 })
 
 subtracao.addEventListener('click', function () {
-  tela.textContent = calculo += '-'
+  acumuladorDeOperadores('-')
   console.log('-')
 })
 
 multiplicacao.addEventListener('click', function () {
-  tela.textContent = calculo += '*'
+  acumuladorDeOperadores('*')
   console.log('*')
 })
 
 divide.addEventListener('click', function () {
-  tela.textContent = calculo += '/'
+  acumuladorDeOperadores('/')
 })
 
 igual.addEventListener('click', function () {
   acumuladorDeOperadores('=')
-  console.log(interpretaString())
+  console.log(interpretaStringOperacao())
 })
 
 clear.addEventListener('click', function () {
   resultado.textContent = ''
   acumuladorDeNum = ''
+  tela.textContent = ''
+  typedNum = []
+  pilha = []
+})
+
+backspace.addEventListener('click', function () {
+  acumuladorDeNum = acumuladorDeNum.substring(0, acumuladorDeNum.length - 1)
+  tela.textContent = acumuladorDeNum
+  console.log(acumuladorDeNum)
 })
 
 //--------------------------------------------------------------
