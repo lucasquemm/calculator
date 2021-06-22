@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+  font-family: 'VT323', monospace;
+  font-size: 45px;
+}
+
+body {
+  background-color: rgb(41, 99, 12);
+}
+.principal {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  width: 900px;
+  min-width: 500px;
+  height: 1001px;
+  margin: auto;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.botoes {
+  display: grid;
+  justify-content: center;
+  background-color: blue;
+  flex: 1;
+  padding-top: 0px;
+  grid-template-columns: 100px 100px 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px 100px 100px;
+  column-gap: 50px;
+  align-content: space-evenly;
+}
+
+.telaFundo {
+  background-color: red;
+  height: 300px;
+}
+
+.telaLive {
+  width: 50%;
+  margin: auto;
+}
+.telaResultadoDv {
+  width: 50%;
+  margin: auto;
+}
+#telaConteudo {
+  width: 500px;
+  height: 70px;
+  background-color: salmon;
+}
+#telaResultado {
+  width: 500px;
+  height: 70px;
+  background-color: sandybrown;
+  text-align: end;
+}
