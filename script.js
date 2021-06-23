@@ -30,53 +30,86 @@ let zero = document.querySelector('#zero')
 //let = document.querySelector('#')
 let igual = document.querySelector('#igual')
 
-function interpretaStringOperacao() {
-  // enquanto for pelo menos 3 vai ser 2 numeros e uma operaocao 3-3
-  while (typedNum.length > 3) {
-    for (let i = 0; i < typedNum.length; i++) {
-      if (typedNum[i] == '+') {
-        // tentando montar uma forma pra pegar o valor da index antes e depois do operador, ai preciso remover eles da array typedNum e colocar em uma nova?
-        pilha = parseInt(typedNum[i - 1]) + parseInt(typedNum[i + 1])
-        typedNum.splice(0, 3, parseInt(pilha))
-        console.log(typedNum)
-      } else if (typedNum[i] == '-') {
-        pilha = typedNum[i - 1] - typedNum[i + 1]
-        typedNum.splice(0, 3, parseInt(pilha))
-        console.log(typedNum)
-      } else if (typedNum[i] == '*') {
-        pilha = typedNum[i - 1] * typedNum[i + 1]
-        typedNum.splice(0, 3, parseInt(pilha))
-        console.log(typedNum)
-      } else if (typedNum[i] == '/') {
-        pilha = typedNum[i - 1] / typedNum[i + 1]
-        typedNum.splice(0, 3, parseInt(pilha))
-        console.log(typedNum)
-      }
-    }
+function interpretaString2() {
+  const a = typedNum.shift()
+  const operation = typedNum.shift()
+  const b = typedNum.shift()
+
+  switch (operation) {
+    case '+':
+      typedNum.unshift(a + b)
+      console.log(typedNum)
+      break
+    case '/':
+      typedNum.unshift(a / b)
+      console.log(typedNum)
+      break
+    case '*':
+      typedNum.unshift(a * b)
+      console.log(typedNum)
+      break
+    case '-':
+      typedNum.unshift(a - b)
+      console.log(typedNum)
+      break
+    default:
+      console.log(typedNum)
+      break
   }
-  if (typedNum.length == 3) {
-    for (let i = 0; i < typedNum.length; i++) {
-      if (typedNum[i] == '+') {
-        pilha = parseInt(typedNum[i - 1]) + parseInt(typedNum[i + 1])
-        typedNum.splice(0, 3, parseInt(pilha))
-        console.log(typedNum)
-      } else if (typedNum[i] == '-') {
-        pilha = typedNum[i - 1] - typedNum[i + 1]
-        typedNum.splice(0, 3, parseInt(pilha))
-        console.log(typedNum)
-      } else if (typedNum[i] == '*') {
-        pilha = typedNum[i - 1] * typedNum[i + 1]
-        typedNum.splice(0, 3, parseInt(pilha))
-        console.log(typedNum)
-      } else if (typedNum[i] == '/') {
-        pilha = typedNum[i - 1] / typedNum[i + 1]
-        typedNum.splice(0, 3, parseInt(pilha))
-        console.log(typedNum)
-      }
-    }
+  if (typedNum.length == 1) {
+    resultado.textContent = typedNum
+  } else {
+    interpretaString2()
   }
-  return (resultado.textContent = pilha)
 }
+
+// function interpretaStringOperacao() {
+//   // enquanto for pelo menos 3 vai ser 2 numeros e uma operaocao 3-3
+//   while (typedNum.length > 3) {
+//     for (let i = 0; i < typedNum.length; i++) {
+//       if (typedNum[i] == '+') {
+//         // tentando montar uma forma pra pegar o valor da index antes e depois do operador, ai preciso remover eles da array typedNum e colocar em uma nova?
+//         pilha = parseInt(typedNum[i - 1]) + parseInt(typedNum[i + 1])
+//         typedNum.splice(0, 3, parseInt(pilha))
+//         console.log(typedNum)
+//       } else if (typedNum[i] == '-') {
+//         pilha = typedNum[i - 1] - typedNum[i + 1]
+//         typedNum.splice(0, 3, parseInt(pilha))
+//         console.log(typedNum)
+//       } else if (typedNum[i] == '*') {
+//         pilha = typedNum[i - 1] * typedNum[i + 1]
+//         typedNum.splice(0, 3, parseInt(pilha))
+//         console.log(typedNum)
+//       } else if (typedNum[i] == '/') {
+//         pilha = typedNum[i - 1] / typedNum[i + 1]
+//         typedNum.splice(0, 3, parseInt(pilha))
+//         console.log(typedNum)
+//       }
+//     }
+//   }
+//   if (typedNum.length == 3) {
+//     for (let i = 0; i < typedNum.length; i++) {
+//       if (typedNum[i] == '+') {
+//         pilha = parseInt(typedNum[i - 1]) + parseInt(typedNum[i + 1])
+//         typedNum.splice(0, 3, parseInt(pilha))
+//         console.log(typedNum)
+//       } else if (typedNum[i] == '-') {
+//         pilha = typedNum[i - 1] - typedNum[i + 1]
+//         typedNum.splice(0, 3, parseInt(pilha))
+//         console.log(typedNum)
+//       } else if (typedNum[i] == '*') {
+//         pilha = typedNum[i - 1] * typedNum[i + 1]
+//         typedNum.splice(0, 3, parseInt(pilha))
+//         console.log(typedNum)
+//       } else if (typedNum[i] == '/') {
+//         pilha = typedNum[i - 1] / typedNum[i + 1]
+//         typedNum.splice(0, 3, parseInt(pilha))
+//         console.log(typedNum)
+//       }
+//     }
+//   }
+//   return (resultado.textContent = pilha)
+// }
 
 function acumuladorDeNumerosRepetidos(num) {
   acumuladorDeNum += num
@@ -120,7 +153,8 @@ divide.addEventListener('click', function () {
 
 igual.addEventListener('click', function () {
   acumuladorDeOperadores('=')
-  console.log(interpretaStringOperacao())
+  //console.log(interpretaStringOperacao())
+  console.log(interpretaString2())
 })
 
 clear.addEventListener('click', function () {
