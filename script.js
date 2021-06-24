@@ -9,7 +9,6 @@ let clear = document.querySelector('#clear')
 let mais = document.querySelector('#mais')
 let divide = document.querySelector('#divide')
 let vezes = document.querySelector('#vezes')
-let ponto = document.querySelector('#ponto')
 
 let sete = document.querySelector('#sete')
 let oito = document.querySelector('#oito')
@@ -78,10 +77,6 @@ igual.addEventListener('click', function () {
   }
   resultadoTela.textContent = resultado
   expressao = []
-})
-
-ponto.addEventListener('click', function () {
-  tela.textContent = '.'
 })
 
 clear.addEventListener('click', function () {
