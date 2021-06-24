@@ -25,8 +25,8 @@ body {
   background-color: blue;
   flex: 1;
   padding-top: 0px;
-  grid-template-columns: 100px 100px 100px 100px 100px;
-  grid-template-rows: 100px 100px 100px 100px 100px;
+  grid-template-columns: 100px 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px 100px;
   column-gap: 50px;
   align-content: space-evenly;
 }
@@ -37,21 +37,25 @@ body {
 }
 
 .telaLive {
-  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
   margin: auto;
 }
-.telaResultadoDv {
-  width: 50%;
-  margin: auto;
-}
-#telaConteudo {
+
+.telas {
   width: 500px;
   height: 70px;
+  margin: 0px;
+}
+#telaConteudo {
   background-color: salmon;
 }
 #telaResultado {
-  width: 500px;
-  height: 70px;
   background-color: sandybrown;
+  font-size: 60px;
+  font-weight: bold;
   text-align: end;
 }

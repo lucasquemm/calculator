@@ -1,15 +1,15 @@
+let expressao = []
+let operador = ''
+
 let tela = document.querySelector('#telaConteudo')
-let resultado = document.querySelector('#telaResultado')
-let expressaoNaTela = ''
-let typedNum = []
+let resultadoTela = document.querySelector('#telaResultado')
 
-let acumuladorDeNum = ''
-
-let backspace = document.querySelector('#backspace')
-let subtracao = document.querySelector('#subtracao')
+let menos = document.querySelector('#menos')
 let clear = document.querySelector('#clear')
-let soma = document.querySelector('#soma')
+let mais = document.querySelector('#mais')
 let divide = document.querySelector('#divide')
+let vezes = document.querySelector('#vezes')
+let ponto = document.querySelector('#ponto')
 
 let sete = document.querySelector('#sete')
 let oito = document.querySelector('#oito')
@@ -22,155 +22,122 @@ let seis = document.querySelector('#seis')
 let um = document.querySelector('#um')
 let dois = document.querySelector('#dois')
 let tres = document.querySelector('#tres')
-let multiplicacao = document.querySelector('#multiplicacao')
 
 let zero = document.querySelector('#zero')
 
 let igual = document.querySelector('#igual')
 
-function interpretaString2() {
-  const a = typedNum.shift()
-  const operation = typedNum.shift()
-  const b = typedNum.shift()
-
-  switch (operation) {
-    case '+':
-      typedNum.unshift(a + b)
-      console.log(typedNum)
-      break
-    case '/':
-      typedNum.unshift(a / b)
-      console.log(typedNum)
-      break
-    case '*':
-      typedNum.unshift(a * b)
-      console.log(typedNum)
-      break
-    case '-':
-      typedNum.unshift(a - b)
-      console.log(typedNum)
-      break
-    default:
-      console.log(typedNum)
-      break
-  }
-  if (typedNum.length == 1) {
-    resultado.textContent = typedNum
-  } else {
-    interpretaString2()
-  }
+function soma(a, b) {
+  return a + b
+}
+function subtracao(a, b) {
+  return a - b
+}
+function multiplicacao(a, b) {
+  return a * b
+}
+function divisao(a, b) {
+  return a / b
 }
 
-function acumuladorDeNumerosRepetidos(num) {
-  acumuladorDeNum += num
-
-  console.log(num)
-}
-
-function acumuladorDeOperadores(operador) {
-  typedNum.push(parseInt(acumuladorDeNum))
-  acumuladorDeNum = ''
-  if (operador != '=') {
-    typedNum.push(operador)
-  }
-}
-
-soma.addEventListener('click', function () {
-  acumuladorDeOperadores('+')
-  tela.textContent = expressaoNaTela += '+'
-  console.log('+')
+mais.addEventListener('click', function () {
+  operador = '+'
 })
 
-subtracao.addEventListener('click', function () {
-  acumuladorDeOperadores('-')
-  tela.textContent = expressaoNaTela += '-'
-  console.log('-')
+menos.addEventListener('click', function () {
+  operador = '-'
 })
 
-multiplicacao.addEventListener('click', function () {
-  acumuladorDeOperadores('*')
-  tela.textContent = expressaoNaTela += '*'
-  console.log('*')
+vezes.addEventListener('click', function () {
+  operador = '*'
 })
 
 divide.addEventListener('click', function () {
-  acumuladorDeOperadores('/')
-  tela.textContent = expressaoNaTela += '/'
-  console.log('/')
+  operador = '/'
 })
 
 igual.addEventListener('click', function () {
-  if (typedNum.length == 0) {
-    alert('INSIRA ALGUM VALOR')
-  } else {
-    acumuladorDeOperadores('=')
-    //console.log(interpretaStringOperacao())
-    console.log(interpretaString2())
+  let resultado
+  let [a, b] = expressao
+  switch (operador) {
+    case '+':
+      resultado = soma(a, b)
+      break
+    case '-':
+      resultado = subtracao(a, b)
+      break
+    case '*':
+      resultado = multiplicacao(a, b)
+      break
+    case '/':
+      resultado = b == 0 ? 'ERROR' : divisao(a, b)
+      break
   }
+  if (typeof a != 'number' || typeof b != 'number' || !operador) {
+    resultado = 'ERROR'
+  }
+  resultadoTela.textContent = resultado
+  expressao = []
+})
+
+ponto.addEventListener('click', function () {
+  tela.textContent = '.'
 })
 
 clear.addEventListener('click', function () {
-  resultado.textContent = ''
-  acumuladorDeNum = ''
+  resultadoTela.textContent = ''
   tela.textContent = ''
-  typedNum = []
-  expressaoNaTela = ''
-})
-
-backspace.addEventListener('click', function () {
-  expressaoNaTela = expressaoNaTela.substring(0, expressaoNaTela.length - 1)
-  tela.textContent = expressaoNaTela
-  console.log(expressaoNaTela)
+  expressao = []
 })
 
 //--------------------------------------------------------------
 
 nove.addEventListener('click', function () {
-  acumuladorDeNumerosRepetidos('9')
-  tela.textContent = expressaoNaTela += '9'
+  expressao.push(parseInt(9))
+  tela.textContent = '9'
 })
 
 oito.addEventListener('click', function () {
-  acumuladorDeNumerosRepetidos('8')
-  tela.textContent = expressaoNaTela += '8'
+  expressao.push(parseInt(8))
+  tela.textContent = '8'
 })
 
 sete.addEventListener('click', function () {
-  acumuladorDeNumerosRepetidos('7')
-  tela.textContent = expressaoNaTela += '7'
+  expressao.push(parseInt(7))
+  tela.textContent = '7'
 })
 
 seis.addEventListener('click', function () {
-  acumuladorDeNumerosRepetidos('6')
-  tela.textContent = expressaoNaTela += '6'
+  expressao.push(parseInt(6))
+  tela.textContent = '6'
 })
 
 cinco.addEventListener('click', function () {
-  acumuladorDeNumerosRepetidos('5')
-  tela.textContent = expressaoNaTela += '5'
+  expressao.push(parseInt(5))
+  tela.textContent = '5'
 })
 
 quatro.addEventListener('click', function () {
-  acumuladorDeNumerosRepetidos('4')
-  tela.textContent = expressaoNaTela += '4'
+  expressao.push(parseInt(4))
+  tela.textContent = '4'
 })
 
 tres.addEventListener('click', function () {
-  acumuladorDeNumerosRepetidos('3')
-  tela.textContent = expressaoNaTela += '3'
+  expressao.push(parseInt(3))
+  tela.textContent = '3'
 })
 
 dois.addEventListener('click', function () {
-  acumuladorDeNumerosRepetidos('2')
-  tela.textContent = expressaoNaTela += '2'
+  expressao.push(parseInt(2))
+  tela.textContent = '2'
 })
 
 um.addEventListener('click', function () {
-  acumuladorDeNumerosRepetidos('1')
-  tela.textContent = expressaoNaTela += '1'
+  expressao.push(parseInt(1))
+  tela.textContent = '1'
 })
 
 zero.addEventListener('click', function () {
-  acumuladorDeNumerosRepetidos('0')
-  tela.textContent = expressaoNaTela += '0'
+  expressao.push(parseInt(0))
+  tela.textContent = '0'
 })
