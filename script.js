@@ -2,32 +2,31 @@ let tela = document.querySelector('#telaConteudo')
 let resultado = document.querySelector('#telaResultado')
 let expressaoNaTela = ''
 let typedNum = []
-let pilha = []
+
 let acumuladorDeNum = ''
 
 let backspace = document.querySelector('#backspace')
-//let = document.querySelector('#')
+
 let clear = document.querySelector('#clear')
-// let barra = document.querySelector('#barra')
+let soma = document.querySelector('#soma')
 let divide = document.querySelector('#divide')
-//let = document.querySelector('#')
+
 let sete = document.querySelector('#sete')
 let oito = document.querySelector('#oito')
 let nove = document.querySelector('#nove')
-// let porcentagem = document.querySelector('#porcentagem')
-let = document.querySelector('#backspace')
+
 let quatro = document.querySelector('#quatro')
 let cinco = document.querySelector('#cinco')
 let seis = document.querySelector('#seis')
 let subtracao = document.querySelector('#subtracao')
-let = document.querySelector('#backspace')
+
 let um = document.querySelector('#um')
 let dois = document.querySelector('#dois')
 let tres = document.querySelector('#tres')
 let multiplicacao = document.querySelector('#multiplicacao')
-//let = document.querySelector('#')
+
 let zero = document.querySelector('#zero')
-//let = document.querySelector('#')
+
 let igual = document.querySelector('#igual')
 
 function interpretaString2() {
@@ -63,54 +62,6 @@ function interpretaString2() {
   }
 }
 
-// function interpretaStringOperacao() {
-//   // enquanto for pelo menos 3 vai ser 2 numeros e uma operaocao 3-3
-//   while (typedNum.length > 3) {
-//     for (let i = 0; i < typedNum.length; i++) {
-//       if (typedNum[i] == '+') {
-//         // tentando montar uma forma pra pegar o valor da index antes e depois do operador, ai preciso remover eles da array typedNum e colocar em uma nova?
-//         pilha = parseInt(typedNum[i - 1]) + parseInt(typedNum[i + 1])
-//         typedNum.splice(0, 3, parseInt(pilha))
-//         console.log(typedNum)
-//       } else if (typedNum[i] == '-') {
-//         pilha = typedNum[i - 1] - typedNum[i + 1]
-//         typedNum.splice(0, 3, parseInt(pilha))
-//         console.log(typedNum)
-//       } else if (typedNum[i] == '*') {
-//         pilha = typedNum[i - 1] * typedNum[i + 1]
-//         typedNum.splice(0, 3, parseInt(pilha))
-//         console.log(typedNum)
-//       } else if (typedNum[i] == '/') {
-//         pilha = typedNum[i - 1] / typedNum[i + 1]
-//         typedNum.splice(0, 3, parseInt(pilha))
-//         console.log(typedNum)
-//       }
-//     }
-//   }
-//   if (typedNum.length == 3) {
-//     for (let i = 0; i < typedNum.length; i++) {
-//       if (typedNum[i] == '+') {
-//         pilha = parseInt(typedNum[i - 1]) + parseInt(typedNum[i + 1])
-//         typedNum.splice(0, 3, parseInt(pilha))
-//         console.log(typedNum)
-//       } else if (typedNum[i] == '-') {
-//         pilha = typedNum[i - 1] - typedNum[i + 1]
-//         typedNum.splice(0, 3, parseInt(pilha))
-//         console.log(typedNum)
-//       } else if (typedNum[i] == '*') {
-//         pilha = typedNum[i - 1] * typedNum[i + 1]
-//         typedNum.splice(0, 3, parseInt(pilha))
-//         console.log(typedNum)
-//       } else if (typedNum[i] == '/') {
-//         pilha = typedNum[i - 1] / typedNum[i + 1]
-//         typedNum.splice(0, 3, parseInt(pilha))
-//         console.log(typedNum)
-//       }
-//     }
-//   }
-//   return (resultado.textContent = pilha)
-// }
-
 function acumuladorDeNumerosRepetidos(num) {
   acumuladorDeNum += num
 
@@ -122,7 +73,6 @@ function acumuladorDeOperadores(operador) {
   acumuladorDeNum = ''
   if (operador != '=') {
     typedNum.push(operador)
-    // tela.textContent += operador
   }
 }
 
@@ -130,12 +80,6 @@ soma.addEventListener('click', function () {
   acumuladorDeOperadores('+')
   tela.textContent = expressaoNaTela += '+'
   console.log('+')
-})
-
-porcentagem.addEventListener('click', function () {
-  acumuladorDeOperadores('')
-  tela.textContent = expressaoNaTela += '%'
-  console.log('')
 })
 
 subtracao.addEventListener('click', function () {
@@ -171,7 +115,6 @@ clear.addEventListener('click', function () {
   acumuladorDeNum = ''
   tela.textContent = ''
   typedNum = []
-  pilha = []
   expressaoNaTela = ''
 })
 
