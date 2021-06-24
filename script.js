@@ -6,7 +6,7 @@ let typedNum = []
 let acumuladorDeNum = ''
 
 let backspace = document.querySelector('#backspace')
-
+let subtracao = document.querySelector('#subtracao')
 let clear = document.querySelector('#clear')
 let soma = document.querySelector('#soma')
 let divide = document.querySelector('#divide')
@@ -18,7 +18,6 @@ let nove = document.querySelector('#nove')
 let quatro = document.querySelector('#quatro')
 let cinco = document.querySelector('#cinco')
 let seis = document.querySelector('#seis')
-let subtracao = document.querySelector('#subtracao')
 
 let um = document.querySelector('#um')
 let dois = document.querySelector('#dois')
