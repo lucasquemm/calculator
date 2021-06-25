@@ -39,12 +39,14 @@ function clearAll() {
 }
 
 function acumulaNum(num) {
-  parseInt((acumuladorDeNum += num))
+  parseFloat((acumuladorDeNum += num))
   console.log(num)
 }
 
 function acumulaOp() {
-  expressao.push(parseInt(acumuladorDeNum))
+  if (acumuladorDeNum != '') {
+    expressao.push(parseFloat(acumuladorDeNum))
+  }
   acumuladorDeNum = ''
   tela.textContent = ''
 }
@@ -73,11 +75,7 @@ function calcula() {
 }
 
 function calculaResultado(num) {
-  console.log(expressao)
-  expressao.shift()
-  console.log(expressao)
   expressao.push(num)
-  console.log(expressao)
 }
 
 function soma(a, b) {
@@ -97,7 +95,7 @@ mais.addEventListener('click', function () {
   operador = '+'
   acumulaOp()
   if (resultado) {
-    calculaResultado(parseInt(resultado))
+    calculaResultado(parseFloat(resultado))
   }
 })
 
@@ -105,7 +103,7 @@ menos.addEventListener('click', function () {
   operador = '-'
   acumulaOp()
   if (resultado) {
-    calculaResultado(parseInt(resultado))
+    calculaResultado(parseFloat(resultado))
   }
 })
 
@@ -113,7 +111,7 @@ vezes.addEventListener('click', function () {
   operador = '*'
   acumulaOp()
   if (resultado) {
-    calculaResultado(parseInt(resultado))
+    calculaResultado(parseFloat(resultado))
   }
 })
 
@@ -121,7 +119,7 @@ divide.addEventListener('click', function () {
   operador = '/'
   acumulaOp()
   if (resultado) {
-    calculaResultado(parseInt(resultado))
+    calculaResultado(parseFloat(resultado))
   }
 })
 
@@ -135,10 +133,12 @@ clear.addEventListener('click', function () {
 })
 
 sinal.addEventListener('click', function () {
-  if (typeof acumuladorDeNum != 'string') {
-    acumuladorDeNum = resultado * -1
+  if (acumuladorDeNum == '') {
+    acumuladorDeNum = tela.textContent = resultado * -1
+    resultado = 0
+  } else {
+    acumuladorDeNum = tela.textContent = parseFloat(acumuladorDeNum) * -1
   }
-  acumuladorDeNum = tela.textContent = parseInt(acumuladorDeNum) * -1
 })
 
 //--------------------------------------------------------------
