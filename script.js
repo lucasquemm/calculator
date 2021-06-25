@@ -33,7 +33,7 @@ function clearAll() {
   tela.textContent = ''
   expressao = []
   acumuladorDeNum = ''
-  resultado = ''
+  resultado = 0
 }
 
 function acumulaNum(num) {
@@ -64,7 +64,7 @@ function calcula() {
       break
   }
   if (typeof a != 'number' || typeof b != 'number' || !operador) {
-    resultado = 'ERROR'
+    resultadoTela.textContent = 'ERROR'
   }
   resultadoTela.textContent = resultado
   expressao = []
@@ -94,10 +94,8 @@ function divisao(a, b) {
 mais.addEventListener('click', function () {
   operador = '+'
   acumulaOp()
-  if (typeof resultado != 'string') {
+  if (resultado) {
     calculaResultado(parseInt(resultado))
-  } else {
-    clearAll()
   }
 })
 
