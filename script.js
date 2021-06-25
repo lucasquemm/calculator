@@ -53,7 +53,7 @@ function acumulaOp() {
 }
 
 function calcula() {
-  let [a, b] = expressao
+  let [a = 0, b = 0] = expressao
   switch (operador) {
     case '+':
       resultado = soma(a, b)
@@ -126,8 +126,12 @@ divide.addEventListener('click', function () {
 })
 
 igual.addEventListener('click', function () {
-  acumulaOp()
-  calcula()
+  if (operador == '') {
+    resultadoTela.textContent = 'ERROR'
+  } else {
+    acumulaOp()
+    calcula()
+  }
 })
 
 clear.addEventListener('click', function () {
@@ -144,8 +148,14 @@ sinal.addEventListener('click', function () {
 })
 
 ponto.addEventListener('click', function () {
-  tela.textContent += '.'
-  acumulaNum('.')
+  if (!acumuladorDeNum.includes('.')) {
+    if (acumuladorDeNum == '') {
+      acumuladorDeNum += 0
+      tela.textContent += 0
+    }
+    tela.textContent += '.'
+    acumulaNum('.')
+  }
 })
 
 //--------------------------------------------------------------
