@@ -1,6 +1,7 @@
 let expressao = []
 let operador = ''
 let acumuladorDeNum = ''
+let resultado = ''
 
 let tela = document.querySelector('#telaConteudo')
 let resultadoTela = document.querySelector('#telaResultado')
@@ -27,6 +28,14 @@ let zero = document.querySelector('#zero')
 
 let igual = document.querySelector('#igual')
 
+function clearAll() {
+  resultadoTela.textContent = ''
+  tela.textContent = ''
+  expressao = []
+  acumuladorDeNum = ''
+  resultado = ''
+}
+
 function acumulaNum(num) {
   acumuladorDeNum += num
   console.log(num)
@@ -39,7 +48,6 @@ function acumulaOp() {
 }
 
 function calcula() {
-  let resultado
   let [a, b] = expressao
   switch (operador) {
     case '+':
@@ -62,6 +70,14 @@ function calcula() {
   expressao = []
 }
 
+function calculaResultado(num) {
+  console.log(expressao)
+  expressao.shift()
+  console.log(expressao)
+  expressao.push(num)
+  console.log(expressao)
+}
+
 function soma(a, b) {
   return a + b
 }
@@ -78,21 +94,35 @@ function divisao(a, b) {
 mais.addEventListener('click', function () {
   operador = '+'
   acumulaOp()
+  if (typeof resultado != 'string') {
+    calculaResultado(parseInt(resultado))
+  } else {
+    clearAll()
+  }
 })
 
 menos.addEventListener('click', function () {
   operador = '-'
   acumulaOp()
+  if (resultado) {
+    calculaResultado(parseInt(resultado))
+  }
 })
 
 vezes.addEventListener('click', function () {
   operador = '*'
   acumulaOp()
+  if (resultado) {
+    calculaResultado(parseInt(resultado))
+  }
 })
 
 divide.addEventListener('click', function () {
   operador = '/'
   acumulaOp()
+  if (resultado) {
+    calculaResultado(parseInt(resultado))
+  }
 })
 
 igual.addEventListener('click', function () {
@@ -101,10 +131,7 @@ igual.addEventListener('click', function () {
 })
 
 clear.addEventListener('click', function () {
-  resultadoTela.textContent = ''
-  tela.textContent = ''
-  expressao = []
-  acumuladorDeNum = ''
+  clearAll()
 })
 
 //--------------------------------------------------------------
