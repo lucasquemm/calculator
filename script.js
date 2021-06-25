@@ -6,8 +6,10 @@ let resultado = ''
 let tela = document.querySelector('#telaConteudo')
 let resultadoTela = document.querySelector('#telaResultado')
 
-let menos = document.querySelector('#menos')
 let clear = document.querySelector('#clear')
+let sinal = document.querySelector('#sinal')
+
+let menos = document.querySelector('#menos')
 let mais = document.querySelector('#mais')
 let divide = document.querySelector('#divide')
 let vezes = document.querySelector('#vezes')
@@ -37,7 +39,7 @@ function clearAll() {
 }
 
 function acumulaNum(num) {
-  acumuladorDeNum += num
+  parseInt((acumuladorDeNum += num))
   console.log(num)
 }
 
@@ -130,6 +132,13 @@ igual.addEventListener('click', function () {
 
 clear.addEventListener('click', function () {
   clearAll()
+})
+
+sinal.addEventListener('click', function () {
+  if (typeof acumuladorDeNum != 'string') {
+    acumuladorDeNum = resultado * -1
+  }
+  acumuladorDeNum = tela.textContent = parseInt(acumuladorDeNum) * -1
 })
 
 //--------------------------------------------------------------

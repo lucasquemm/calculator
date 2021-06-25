@@ -29,7 +29,11 @@ body {
 }
 
 .operadores {
-  background-color: rgb(104, 104, 104);
+  background-color: rgb(166, 179, 255);
+}
+
+.func {
+  background-color: rgb(80, 82, 109);
 }
 
 .teclado {
@@ -39,14 +43,19 @@ body {
   flex: 1;
   padding-top: 0px;
   grid-template-columns: 100px 100px 100px 100px;
-  grid-template-rows: 100px 100px 100px 100px;
-  column-gap: 50px;
+  grid-template-rows: 100px 100px 100px 100px 100px 100px;
+  column-gap: 10px;
+  row-gap: 10px;
   align-content: space-evenly;
+
   border: 10px solid black;
   border-radius: 0px 0px 20px 20px;
+  padding-top: 60px;
 }
 
-/* style.css | http://127.0.0.1:5500/style.css */
+#igual {
+  grid-column: 3 / 5;
+}
 
 .telaFundo {
   background-color: rgb(48, 44, 59);
