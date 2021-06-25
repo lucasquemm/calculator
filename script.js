@@ -1,5 +1,6 @@
 let expressao = []
 let operador = ''
+let acumuladorDeNum = ''
 
 let tela = document.querySelector('#telaConteudo')
 let resultadoTela = document.querySelector('#telaResultado')
@@ -26,36 +27,18 @@ let zero = document.querySelector('#zero')
 
 let igual = document.querySelector('#igual')
 
-function soma(a, b) {
-  return a + b
-}
-function subtracao(a, b) {
-  return a - b
-}
-function multiplicacao(a, b) {
-  return a * b
-}
-function divisao(a, b) {
-  return a / b
+function acumulaNum(num) {
+  acumuladorDeNum += num
+  console.log(num)
 }
 
-mais.addEventListener('click', function () {
-  operador = '+'
-})
+function acumulaOp() {
+  expressao.push(parseInt(acumuladorDeNum))
+  acumuladorDeNum = ''
+  tela.textContent = ''
+}
 
-menos.addEventListener('click', function () {
-  operador = '-'
-})
-
-vezes.addEventListener('click', function () {
-  operador = '*'
-})
-
-divide.addEventListener('click', function () {
-  operador = '/'
-})
-
-igual.addEventListener('click', function () {
+function calcula() {
   let resultado
   let [a, b] = expressao
   switch (operador) {
@@ -77,62 +60,101 @@ igual.addEventListener('click', function () {
   }
   resultadoTela.textContent = resultado
   expressao = []
+}
+
+function soma(a, b) {
+  return a + b
+}
+function subtracao(a, b) {
+  return a - b
+}
+function multiplicacao(a, b) {
+  return a * b
+}
+function divisao(a, b) {
+  return a / b
+}
+
+mais.addEventListener('click', function () {
+  operador = '+'
+  acumulaOp()
+})
+
+menos.addEventListener('click', function () {
+  operador = '-'
+  acumulaOp()
+})
+
+vezes.addEventListener('click', function () {
+  operador = '*'
+  acumulaOp()
+})
+
+divide.addEventListener('click', function () {
+  operador = '/'
+  acumulaOp()
+})
+
+igual.addEventListener('click', function () {
+  acumulaOp()
+  calcula()
 })
 
 clear.addEventListener('click', function () {
   resultadoTela.textContent = ''
   tela.textContent = ''
   expressao = []
+  acumuladorDeNum = ''
 })
 
 //--------------------------------------------------------------
 
 nove.addEventListener('click', function () {
-  expressao.push(parseInt(9))
-  tela.textContent = '9'
+  acumulaNum(9)
+  tela.textContent += '9'
 })
 
 oito.addEventListener('click', function () {
-  expressao.push(parseInt(8))
-  tela.textContent = '8'
+  acumulaNum(8)
+  tela.textContent += '8'
 })
 
 sete.addEventListener('click', function () {
-  expressao.push(parseInt(7))
-  tela.textContent = '7'
+  acumulaNum(7)
+  tela.textContent += '7'
 })
 
 seis.addEventListener('click', function () {
-  expressao.push(parseInt(6))
-  tela.textContent = '6'
+  acumulaNum(6)
+  tela.textContent += '6'
 })
 
 cinco.addEventListener('click', function () {
-  expressao.push(parseInt(5))
-  tela.textContent = '5'
+  acumulaNum(5)
+  tela.textContent += '5'
 })
 
 quatro.addEventListener('click', function () {
-  expressao.push(parseInt(4))
-  tela.textContent = '4'
+  acumulaNum(4)
+  tela.textContent += '4'
 })
 
 tres.addEventListener('click', function () {
-  expressao.push(parseInt(3))
-  tela.textContent = '3'
+  acumulaNum(3)
+  tela.textContent += '3'
 })
 
 dois.addEventListener('click', function () {
-  expressao.push(parseInt(2))
-  tela.textContent = '2'
+  acumulaNum(2)
+  tela.textContent += '2'
 })
 
 um.addEventListener('click', function () {
-  expressao.push(parseInt(1))
-  tela.textContent = '1'
+  acumulaNum(1)
+  tela.textContent += '1'
 })
 
 zero.addEventListener('click', function () {
-  expressao.push(parseInt(0))
-  tela.textContent = '0'
+  acumulaNum(0)
+  tela.textContent += '0'
 })
