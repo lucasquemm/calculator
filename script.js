@@ -8,6 +8,7 @@ let resultadoTela = document.querySelector('#telaResultado')
 
 let clear = document.querySelector('#clear')
 let sinal = document.querySelector('#sinal')
+let ponto = document.querySelector('#ponto')
 
 let menos = document.querySelector('#menos')
 let mais = document.querySelector('#mais')
@@ -39,7 +40,7 @@ function clearAll() {
 }
 
 function acumulaNum(num) {
-  parseFloat((acumuladorDeNum += num))
+  acumuladorDeNum += num
   console.log(num)
 }
 
@@ -70,7 +71,8 @@ function calcula() {
   if (typeof a != 'number' || typeof b != 'number' || !operador) {
     resultadoTela.textContent = 'ERROR'
   }
-  resultadoTela.textContent = resultado
+  resultadoTela.textContent =
+    typeof resultado == 'string' ? resultado : resultado.toFixed(2)
   expressao = []
 }
 
@@ -139,6 +141,11 @@ sinal.addEventListener('click', function () {
   } else {
     acumuladorDeNum = tela.textContent = parseFloat(acumuladorDeNum) * -1
   }
+})
+
+ponto.addEventListener('click', function () {
+  tela.textContent += '.'
+  acumulaNum('.')
 })
 
 //--------------------------------------------------------------
