@@ -40,6 +40,9 @@ body {
   background-color: rgb(80, 82, 109);
   color: whitesmoke;
 }
+#clear {
+  grid-column: 1/3;
+}
 
 .teclado {
   display: grid;
