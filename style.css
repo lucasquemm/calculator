@@ -16,7 +16,7 @@ body {
   height: 1001px;
   margin: auto;
   border-radius: 20px;
-  padding: 20px;
+  padding: 10px;
 }
 
 .botoes {
@@ -30,6 +30,10 @@ body {
 
 .operadores {
   background-color: rgb(166, 179, 255);
+}
+.operadores:focus {
+  outline: rgb(255, 255, 255) solid 5px;
+  opacity: 0.5;
 }
 
 .func {

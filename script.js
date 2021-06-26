@@ -31,6 +31,34 @@ let zero = document.querySelector('#zero')
 
 let igual = document.querySelector('#igual')
 
+function numberClick(num) {
+  return function () {
+    acumulaNum(num)
+    tela.textContent += num
+  }
+}
+
+function opClick(operacao) {
+  return function () {
+    operador = operacao
+    acumulaOp()
+    if (resultado) {
+      calculaResultado(parseFloat(resultado))
+    }
+  }
+}
+
+function pontoClick() {
+  if (!acumuladorDeNum.includes('.')) {
+    if (acumuladorDeNum == '') {
+      acumuladorDeNum += 0
+      tela.textContent += 0
+    }
+    tela.textContent += '.'
+    acumulaNum('.')
+  }
+}
+
 function clearAll() {
   resultadoTela.textContent = ''
   tela.textContent = ''
@@ -93,37 +121,13 @@ function divisao(a, b) {
   return a / b
 }
 
-mais.addEventListener('click', function () {
-  operador = '+'
-  acumulaOp()
-  if (resultado) {
-    calculaResultado(parseFloat(resultado))
-  }
-})
+mais.addEventListener('click', opClick('+'))
 
-menos.addEventListener('click', function () {
-  operador = '-'
-  acumulaOp()
-  if (resultado) {
-    calculaResultado(parseFloat(resultado))
-  }
-})
+menos.addEventListener('click', opClick('-'))
 
-vezes.addEventListener('click', function () {
-  operador = '*'
-  acumulaOp()
-  if (resultado) {
-    calculaResultado(parseFloat(resultado))
-  }
-})
+vezes.addEventListener('click', opClick('*'))
 
-divide.addEventListener('click', function () {
-  operador = '/'
-  acumulaOp()
-  if (resultado) {
-    calculaResultado(parseFloat(resultado))
-  }
-})
+divide.addEventListener('click', opClick('/'))
 
 igual.addEventListener('click', function () {
   if (operador == '') {
@@ -147,65 +151,40 @@ sinal.addEventListener('click', function () {
   }
 })
 
-ponto.addEventListener('click', function () {
-  if (!acumuladorDeNum.includes('.')) {
-    if (acumuladorDeNum == '') {
-      acumuladorDeNum += 0
-      tela.textContent += 0
-    }
-    tela.textContent += '.'
-    acumulaNum('.')
-  }
-})
+ponto.addEventListener('click', pontoClick)
 
 //--------------------------------------------------------------
+document.addEventListener('keyup', keypress)
 
-nove.addEventListener('click', function () {
-  acumulaNum(9)
-  tela.textContent += '9'
-})
+function keypress(e) {
+  if (
+    (e.keyCode >= 48 && e.keyCode <= 57) ||
+    (e.keyCode >= 96 && e.keyCode <= 105)
+  ) {
+    numberClick(parseInt(e.key))()
+  } else if (['+', '-', '*', '/'].includes(e.key)) {
+    opClick(e.key)()
+  } else if (e.key == '.') {
+    pontoClick()
+  }
+}
 
-oito.addEventListener('click', function () {
-  acumulaNum(8)
-  tela.textContent += '8'
-})
+nove.addEventListener('click', numberClick(9))
 
-sete.addEventListener('click', function () {
-  acumulaNum(7)
-  tela.textContent += '7'
-})
+oito.addEventListener('click', numberClick(8))
 
-seis.addEventListener('click', function () {
-  acumulaNum(6)
-  tela.textContent += '6'
-})
+sete.addEventListener('click', numberClick(7))
 
-cinco.addEventListener('click', function () {
-  acumulaNum(5)
-  tela.textContent += '5'
-})
+seis.addEventListener('click', numberClick(6))
 
-quatro.addEventListener('click', function () {
-  acumulaNum(4)
-  tela.textContent += '4'
-})
+cinco.addEventListener('click', numberClick(5))
 
-tres.addEventListener('click', function () {
-  acumulaNum(3)
-  tela.textContent += '3'
-})
+quatro.addEventListener('click', numberClick(4))
 
-dois.addEventListener('click', function () {
-  acumulaNum(2)
-  tela.textContent += '2'
-})
+tres.addEventListener('click', numberClick(3))
 
-um.addEventListener('click', function () {
-  acumulaNum(1)
-  tela.textContent += '1'
-})
+dois.addEventListener('click', numberClick(2))
 
-zero.addEventListener('click', function () {
-  acumulaNum(0)
-  tela.textContent += '0'
-})
+um.addEventListener('click', numberClick(1))
+
+zero.addEventListener('click', numberClick(0))
